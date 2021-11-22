@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +17,11 @@ import { AHeaderComponent } from './components/admin/a-header/a-header.component
 import { ANavComponent } from './components/admin/a-nav/a-nav.component';
 import { AEditComponent } from './components/admin/a-edit/a-edit.component';
 import { PersonalInfoFormComponent } from './components/personal-info-form/personal-info-form.component';
+import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import { UserOrderHistoryComponent } from './components/user-order-history/user-order-history.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { UserInformationSettingsComponent } from './components/user-information-settings/user-information-settings.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +35,19 @@ import { PersonalInfoFormComponent } from './components/personal-info-form/perso
     AHeaderComponent,
     ANavComponent,
     AEditComponent,
-    PersonalInfoFormComponent
+    PersonalInfoFormComponent,
+    UserMenuComponent,
+    UserOrderHistoryComponent,
+    ShoppingCartComponent,
+    UserSettingsComponent,
+    UserInformationSettingsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

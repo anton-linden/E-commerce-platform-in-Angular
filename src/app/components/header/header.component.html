@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light">
   <div class="container-fluid">
 
-    <h1 class="col-1" routerLink="">Logo</h1>
+    <h1 class="col-1 pointer" routerLink="">Logo</h1>
 
     <form class="me-12 d-flex col-6">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -9,7 +9,8 @@
     </form>
 
     <div class="col-1">
-      <h3 class="md-col-1" routerLink="/sign-in-page">Login & K</h3>
+      <h3 class="md-col-1 pointer" *ngIf="Username.length <= 0" routerLink="/sign-in-page">Sign in</h3>
+      <h3 class="md-col-1 pointer" *ngIf="Username.length > 0" routerLink="/user-menu">{{Username}}</h3>
     </div>
 
   </div>

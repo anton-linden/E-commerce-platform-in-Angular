@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-md col-2"></div>
+  <div class="col-md col-8">
+    <h3>Your shopping cart</h3>
+    <hr/>
+  </div>
+</div>
+
+<br><br><br>
+
+<div class="row col-12">
+  <div class="col-2"></div>
+
+  <div class="col-4">
+    <div class="border m-1" *ngFor="let item of cart_items">
+      <div class="m-3">
+        <div class="row d-flex align-items-center">
+          <img src="assets/200x200.svg" routerLink="/product-page" class="rounded float-left pointer col-2" alt="...">
+          <h4 class="col-4">{{item.name}}</h4>
+          <h5 class="col-4">{{item.price}} kr</h5>
+          <!--<h5 class="col-1">Amount</h5>-->
+          <button type="button" class="btn btn-danger col-2" (click)="removeItem(item.productID)" name="button">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="userID == 0 && noUser">
+    <h1 class="text-center">Shopping cart is not available at the moment for non-logged in users</h1>
+  </div>
+
+  <div class="col-6" *ngIf="userID != 0">
+    <div class="border m-5 col-md col-5">
+      <div class="m-3">
+        <div class="row">
+          <h6 class="col-6">Pris</h6>
+          <h6 class="col-6 text-end">{{currentPrice}} kr</h6>
+        </div>
+        <div class="row">
+          <h6 class="col-6">Rabatt</h6>
+          <h6 class="col-6 text-end">{{sale}} kr</h6>
+        </div>
+        <div class="row">
+          <h6 class="col-6">Frakt</h6>
+          <h6 class="col-6 text-end">{{shipping}} kr</h6>
+        </div>
+        <hr/>
+        <br>
+        <div class="row">
+          <h4 class="col-6">Total Pris</h4>
+          <h4 class="col-6 text-end">{{totalPrice}} kr</h4>
+        </div>
+        <br>
+        <button class="btn btn-primary btn-lg btn-block col-12" type="submit" (click)="orderCartProducts()" routerLink="/shopping-cart">Lägg order</button>
+      </div>
+    </div>
+  </div>
+</div>
