@@ -20,8 +20,8 @@ export class OrdersService {
     return this.http.post(url, body,{'headers':headers})
   }
 
-  getCustomer(userID: number) {
-    let url = this.baseURL + "getCustomerFromUserID.php?" + userID;
+  getCustomer(UserID: number) {
+    let url = this.baseURL + "getCustomerFromUserID.php?userID=" + UserID;
     return this.http.get(url);
   }
 

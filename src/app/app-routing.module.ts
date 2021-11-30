@@ -11,6 +11,7 @@ import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 import { AEditComponent } from './components/admin/a-edit/a-edit.component';
+import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
 
 const routes: Routes = [
   {path: '', component: ProductViewComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'user-menu', component: UserMenuComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'admin-product', component: AEditComponent},
+  {path: 'admin-panel', component: AdminPanelComponent},
 ];
 
 @NgModule({
