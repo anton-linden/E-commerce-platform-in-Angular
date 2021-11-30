@@ -26,7 +26,7 @@ if ($userID) {
   }
 
   //Get cart contents.
-  $sql = "SELECT productID, amount FROM products_in_cart WHERE userID = '$userID'";
+  $sql = "SELECT productsInCartID, productID, amount FROM products_in_cart WHERE userID = '$userID'";
   $result = $conn->query($sql);
 
   echo json_encode($result -> fetch_all(MYSQLI_ASSOC));

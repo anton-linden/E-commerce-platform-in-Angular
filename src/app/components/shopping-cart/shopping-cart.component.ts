@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class ShoppingCartComponent implements OnInit {
 
   public userID: number = 0;
-  cart_items: Array<{productID: number, amount: number, name: string, price: number, description: string, filePath: string}> = [];
+  cart_items: Array<{productsInCartID: number, productID: number, amount: number, name: string, price: number, description: string, filePath: string}> = [];
   currentPrice: number = 0;
   totalPrice: number = 0;
   shipping: number = 150;
@@ -35,6 +35,7 @@ export class ShoppingCartComponent implements OnInit {
 
             this.cart.getProductData(Object(data2)[index-1].productID).subscribe(data3=>{
               this.cart_items.push({
+                productsInCartID: Object(data2)[index-1].productsInCartID,
                 productID: Object(data2)[index-1].productID,
                 amount: Object(data2)[index-1].amount,
                 name: Object(data3)[0].name,
@@ -43,7 +44,9 @@ export class ShoppingCartComponent implements OnInit {
                 filePath: Object(data3)[0].filePath
               });
 
-              this.currentPrice += parseInt(Object(data3)[0].price);
+              this.cart_items = this.cart_items.sort((a, b) => b.productID - a.productID);  //Sort the array after productID to avoid issues.
+
+              this.currentPrice += (parseInt(Object(data3)[0].price) * parseInt(Object(data2)[index-1].amount));
               this.totalPrice = (this.currentPrice + this.shipping + this.sale);
             })
           }
@@ -103,6 +106,24 @@ export class ShoppingCartComponent implements OnInit {
         }
         this.reloadPage();
       })
+  }
+
+  callchangeAmountOfProductInCart(ProductsInCartID: number, Amount: number) {
+    this.cart.changeAmountOfProductInCart(ProductsInCartID, Amount)
+      .subscribe(data => {
+        this.reloadPage();
+      })
+  }
+
+  increaseAmountOfProductInCart(ProductsInCartID: number, Amount: number) {
+    Amount++;
+    this.callchangeAmountOfProductInCart(ProductsInCartID, Amount);
+  }
+
+  decreaseAmountOfProductInCart(ProductsInCartID: number, Amount: number, ProductID: number) {
+    if (Amount <= 1) this.removeItem(ProductID)
+    Amount--;
+    this.callchangeAmountOfProductInCart(ProductsInCartID, Amount);
   }
 
   ngOnInit(): void {

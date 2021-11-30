@@ -13,6 +13,20 @@ export class GetShoppingCartService {
 
   constructor(private http:HttpClient) {}
 
+  changeAmountOfProductInCart(ProductsInCartID: number, Amount: number) {
+    let url = this.baseURL + "changeAmountOnProductInCart.php";
+    const headers = { 'content-type': 'application/json'}
+
+    var obj = {
+      productsInCartID: ProductsInCartID,
+      amount: Amount
+    };
+
+    const body=obj;
+    console.log(body)
+    return this.http.post(url, body,{'headers':headers})
+  }
+
   cleanCart(UserID: number): Observable<any> {
     let url = this.baseURL + "cleanCart.php";
     const headers = { 'content-type': 'application/json'}
