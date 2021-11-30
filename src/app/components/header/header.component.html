@@ -1,0 +1,14 @@
+<nav class="navbar navbar-light">
+  <div class="container-fluid">
+      <h1 class="pointer" routerLink="">Logo</h1>
+
+      <form class="me-12 d-flex col-6">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success disabled" type="submit">Search</button>
+      </form>
+
+      <h3 class="pointer" *ngIf="Username.length > 0" routerLink="/shopping-cart">Cart</h3>
+      <h3 class="pointer" *ngIf="Username.length <= 0" routerLink="/sign-in-page">Sign in</h3>
+      <h3 class="pointer" *ngIf="Username.length > 0" routerLink="/user-menu">{{Username}}</h3>
+  </div>
+</nav>

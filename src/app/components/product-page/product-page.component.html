@@ -1,0 +1,25 @@
+<div class="contrainer">
+  <div class="row" *ngFor="let product of product">
+    <div class="col-md d-flex justify-content-center">
+      <img src="assets/200x200.svg" class="rounded float-left img-fluid" alt="...">
+    </div>
+
+    <div class="col-md">
+      <h3>{{product.name}}</h3>
+      <p>{{product.description}}</p>
+    </div>
+
+    <div class="col-md">
+      <div class="border m-5">
+        <div class="m-3">
+          <h4>Pris: {{product.price}} kr</h4>
+          <h6>Lager status: I lager</h6>
+          <h6>Leveranstid: 3-5 dagar</h6>
+          <br>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="addToCart()">Lägg till i varukorgen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

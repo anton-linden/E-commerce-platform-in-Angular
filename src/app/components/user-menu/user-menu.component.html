@@ -1,0 +1,36 @@
+<div class="container-fluid w-75">
+  <div class="row align-items-center float-center">
+
+    <div class="row">
+      <h2 class="text-center">Hello, {{Username}}, what would you like to do?</h2>
+    </div>
+
+    <!--<div class="row">
+        <button type="button" name="button" class="btn active btn-light mt-5 btn-block btn-lg"><h4 class="text-center">Se mina ordrar</h4></button>
+    </div>
+
+    <div class="row">
+        <button type="button" name="button" class="btn btn-light mt-3 btn-block btn-lg"><h4 class="text-center">Redigera mitt konto</h4></button>
+    </div>
+
+    <div class="row">
+        <button type="button" name="button" class="btn btn-light btn-block mt-3 btn-lg"><h4 class="text-center">Logga ut</h4></button>
+    </div>-->
+
+    <div class="btn-group mt-5" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" (click)="changeView(1)" name="btnradio" id="btnradio1" autocomplete="off" checked>
+      <label class="btn btn-outline-dark" for="btnradio1">Order history</label>
+
+      <input type="radio" class="btn-check" (click)="changeView(2)" name="btnradio" id="btnradio2" autocomplete="off">
+      <label class="btn btn-outline-dark" for="btnradio2">Redigera användar uppgifter</label>
+
+      <input type="radio" class="btn-check" (click)="changeView(3)" name="btnradio" id="btnradio3" autocomplete="off">
+      <label class="btn btn-outline-dark" for="btnradio3">Konto inställningar</label>
+    </div>
+
+    <app-user-order-history *ngIf="view == 1"></app-user-order-history>
+    <app-user-information-settings *ngIf="view == 2"></app-user-information-settings>
+    <app-user-settings *ngIf="view == 3"></app-user-settings>
+
+  </div>
+</div>

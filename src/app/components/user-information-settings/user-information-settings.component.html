@@ -1,0 +1,42 @@
+<br>
+  <form #updateCustomer="ngForm" (ngSubmit)="saveInformation(updateCustomer)" action="index.html" method="post">
+    <div class="col-md col-12 container" *ngFor="let user of customer">
+      <div class="row">
+        <div class="col-md col-6">
+          <div class="mb-3">
+            <label for="InputPhoneNumber" class="form-label">Phone number:</label>
+            <input type="email" class="form-control" id="InputPhoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="InputAdress" class="form-label">Adress:</label>
+            <input type="email" class="form-control" id="InputAdress" name="adress" [(ngModel)]="user.adress" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="InputCity" class="form-label">City:</label>
+            <input type="email" class="form-control" id="InputCity" name="city" [(ngModel)]="user.city" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="InputPostalCode" class="form-label">Postal code:</label>
+            <input type="email" class="form-control" id="InputPostalCode" name="postalCode" [(ngModel)]="user.postalCode">
+          </div>
+        </div>
+
+        <div class="col-md col-6">
+          <div class="mb-3">
+            <label for="InputEmail" class="form-label">Email adress:</label>
+            <input type="email" class="form-control" id="InputEmail" name="email" [(ngModel)]="user.email" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="InputForename" class="form-label">Fore name:</label>
+            <input type="email" class="form-control" id="InputForename" name="forename" [(ngModel)]="user.forename" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="InputLastname" class="form-label">Last name:</label>
+            <input type="email" class="form-control" id="InputLastname" name="lastname" [(ngModel)]="user.lastname" ngModel>
+          </div>
+          <button type="submit" class="btn btn-lg btn-primary">Save information</button>
+        </div>
+      </div>
+    </div>
+
+  </form>

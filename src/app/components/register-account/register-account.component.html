@@ -1,0 +1,48 @@
+<section class="pt-5">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+
+
+          <div class="card-body p-5 text-center">
+
+            <form #login="ngForm" (ngSubmit)="submit(login)" class="" action="index.html" method="post">
+              <h3 class="mb-5">Register account</h3>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="typeEmailX-2">Username</label>
+                <input type="text" name="username" id="typeEmailX-2" placeholder="Username" maxlength="{{maxUsernameLength}}" required="required" class="form-control form-control-lg" ngModel/>
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="typeEmailX-2">Password</label>
+                <input type="password" name="password" id="typePasswordX-2" required="required" maxlength="{{maxPasswordLength}}" placeholder="**********************" class="form-control form-control-lg" ngModel/>
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="typeEmailX-2">Confirm password</label>
+                <input type="password" name="confirmPassword" id="typePasswordX-2" required="required" maxlength="{{maxPasswordLength}}" placeholder="**********************" class="form-control form-control-lg" ngModel/>
+              </div>
+
+              <br> <!-- TODO: ILLEGAL, Replace with margin/padding -->
+
+              <!--<button class="btn btn-primary btn-lg btn-block col-6" type="submit" routerLink="/user-edit-page">Register account</button>-->
+              <button class="btn btn-primary btn-lg btn-block col-6" type="submit" id="submit" value="Submit">Register account</button>
+
+            </form>
+            <br>
+            <label *ngIf="status.length > 0" class="text-danger animate__animated animate__bounceIn" for="">{{status}}</label>
+
+            <div class="">
+              <p class="text-primary text-start mb-1 mt-5" routerLink="/sign-in-page" >Already have an account? Login here!</p>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

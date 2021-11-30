@@ -1,0 +1,49 @@
+<section class="pt-5">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <form #login="ngForm" (ngSubmit)="submit(login)" class="" action="index.html" method="post">
+              <h3 class="mb-5">Sign in</h3>
+
+              <div class="form-outline mb-4">
+                <input type="text" name="username" id="typeEmailX-2" placeholder="Username" maxLength="{{maxUsernameLength}}" class="form-control form-control-lg" ngModel/>
+                <!--<label class="form-label" for="typeEmailX-2">Email</label>-->
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" name="password" id="typePasswordX-2" placeholder="**********************" maxLength="{{maxPasswordLength}}" class="form-control form-control-lg" ngModel/>
+                <!--<label class="form-label" for="typePasswordX-2">Password</label>-->
+              </div>
+
+              <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-start mb-4">
+
+                <!--<input
+                  class="form-check-input mr-2"
+                  type="checkbox"
+                  value=""
+                  id="form1Example3"
+                />
+
+                <label class="form-check-label" for="form1Example3">Remember password </label>-->
+              </div>
+
+              <label *ngIf="status.length > 0" class="text-danger animate__animated animate__bounceIn" for="">{{status}}</label>
+              <br>
+              <button class="btn btn-primary btn-lg btn-block col-6" type="submit" id="submit" value="Submit">Login</button>
+
+              <div class="">
+                <p class="text-start mb-1 mt-5"><del>Forgot your password?</del></p>
+                <p class="text-primary text-start pointer" routerLink="/register-user">Don't have an account? Register here!</p>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
