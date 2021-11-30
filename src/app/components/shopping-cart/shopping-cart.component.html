@@ -10,16 +10,25 @@
   <br><br><br>
 <div class="container">
   <div class="row">
-    <div class="col-6">
+    <div class="container col-6">
       <div class="border m-1" *ngFor="let item of cart_items">
         <div class="m-3">
+
           <div class="row d-flex align-items-center">
             <img src="assets/200x200.svg" routerLink="/product-page" class="rounded float-left pointer col-2" alt="...">
             <h4 class="col-4">{{item.name}}</h4>
-            <h5 class="col-4">{{item.price}} kr</h5>
-            <!--<h5 class="col-1">Amount</h5>-->
-            <button type="button" class="btn btn-danger col-2" (click)="removeItem(item.productID)" name="button">Remove</button>
+            <h5 class="col-2">{{item.price}} kr</h5>
+
+            <div class="col-3">
+              <i class="" (click)="decreaseAmountOfProductInCart(item.productsInCartID, item.amount, item.productID)">-</i>
+              <input type="number"  disabled="disabled" value="{{item.amount}}" class="m-2 text-center col-md-6">
+              <i class="" (click)="increaseAmountOfProductInCart(item.productsInCartID, item.amount)">+</i>
+            </div>
+
+            <!--<button type="button" class="btn btn-danger col-2" (click)="removeItem(item.productID)" name="button">Remove</button>-->
+            <i class="col-1" (click)="removeItem(item.productID)">X</i>
           </div>
+
         </div>
       </div>
     </div>
