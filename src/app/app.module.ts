@@ -24,6 +24,7 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 import { UserInformationSettingsComponent } from './components/user-information-settings/user-information-settings.component';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ShoppingCartComponent,
     UserSettingsComponent,
     UserInformationSettingsComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

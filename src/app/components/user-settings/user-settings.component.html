@@ -1,3 +1,4 @@
 <div class="col-md col-12">
-  <button type="button" class="btn btn-block btn-danger btn-lg mt-3" name="button" (click)="logOutUser()">Log out</button>
+  <button type="button" class="btn btn-block btn-danger btn-lg mt-3" name="logoutButton" (click)="logOutUser()">Log out</button>
+  <button type="button" class="btn btn-block btn-primary btn-lg mt-3" name="adminPanelButton" *ngIf="isAdminPanelAllowed" (click)="navigateToAdminPanel()">Go to admin panel</button>
 </div>
