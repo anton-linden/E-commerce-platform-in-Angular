@@ -31,12 +31,9 @@ export class RegisterAccountComponent implements OnInit {
     }
   }
 
-  checkThatPasswordMatches(pass: any, conPass: any) { //Front-end function to check if both password entered matches.
-    if (pass == conPass) {
-      return true;
-    } else {
-      return false;
-    }
+  checkThatPasswordMatches(pass: string, conPass: string) { //Front-end function to check if both password entered matches.
+    if (pass == conPass) return true;
+    return false;
   }
 
   sendUserInformation() { // Creates a account and a customer.

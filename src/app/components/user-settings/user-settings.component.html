@@ -1,4 +1,27 @@
 <div class="col-md col-12">
   <button type="button" class="btn btn-block btn-danger btn-lg mt-3" name="logoutButton" (click)="logOutUser()">Log out</button>
   <button type="button" class="btn btn-block btn-primary btn-lg mt-3" name="adminPanelButton" *ngIf="isAdminPanelAllowed" (click)="navigateToAdminPanel()">Go to admin panel</button>
+
+  <form #updatePassword="ngForm" (ngSubmit)="saveInformation(updatePassword)" action="index.html" method="post">
+    <div class="col-md col-12 container">
+      <div class="row">
+        <div class="col-md col-6">
+          <div class="mb-3">
+            <label for="InputPassword" class="form-label">Current password:</label>
+            <input type="password" class="form-control" id="InputPassword" name="currentPassword" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="InputNewPassword" class="form-label">New password</label>
+            <input type="password" class="form-control" id="InputNewPassword" name="newPassword" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="InputConfirmPassword" class="form-label">Confirm new password:</label>
+            <input type="password" class="form-control" id="InputConfirmPassword" name="confirmPassword" required="required" ngModel>
+          </div>
+          <button type="submit" class="btn btn-lg btn-primary">Save information</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
 </div>

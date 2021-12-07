@@ -11,11 +11,28 @@ import {Router} from '@angular/router';
 export class UserSettingsComponent implements OnInit {
 
   isAdminPanelAllowed: boolean = false;
+  minPasswordLength = 5;
 
   constructor(private router: Router, private user:UserService) { }
 
   ngOnInit(): void {
     this.getUserAuthority();
+  }
+
+  checkThatPasswordMatches(pass: string, conPass: string) { //Front-end function to check if both password entered matches.
+    if (pass == conPass) return true;
+    return false;
+  }
+
+  saveInformation(passwordInformation: any) {
+    if (!passwordInformation.value.currentPassword || !passwordInformation.value.newPassword || !passwordInformation.value.confirmPassword) { return }
+    if (!this.checkThatPasswordMatches(passwordInformation.value.newPassword, passwordInformation.value.confirmPassword)) { alert("Passwords doesn't match"); return }
+    if (passwordInformation.value.newPassword.length < this.minPasswordLength || passwordInformation.value.confirmPassword.length < this.minPasswordLength) { alert("New password is too short"); return }
+
+    this.user.validateAndChangeUserPassword(JSON.stringify(sessionStorage.getItem('Username')).replace(/['"]+/g, ''), passwordInformation.value.currentPassword, passwordInformation.value.newPassword).subscribe(data => {
+      if (data == "Passwords do not match.") { alert("Incorrect password given."); }
+      if (data == 1) { alert("Passwords successfully changed!"); window.location.reload();}
+    })
   }
 
   logOutUser() {
@@ -25,7 +42,6 @@ export class UserSettingsComponent implements OnInit {
 
   getUserAuthority() : boolean {
     if (sessionStorage.getItem('Username') == null) return false
-    console.log(sessionStorage.getItem('Username'));
 
     this.user.getUserAuth(JSON.stringify(sessionStorage.getItem('Username')).replace(/['"]+/g, '')).subscribe(data => {
       if ( data == "No role found") return false
