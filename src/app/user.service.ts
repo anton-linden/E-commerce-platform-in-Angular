@@ -16,4 +16,16 @@ export class UserService {
     return this.http.get(this.baseURL + "getUserRoleFromUsername.php?username=" + Username);
   }
 
+  validateAndChangeUserPassword(Username: string, CurrentPassword: string, NewPassword: string) {
+    const headers = { 'content-type': 'application/json'}
+
+    const obj = {
+      username: Username,
+      currentPassword: CurrentPassword,
+      newPassword: NewPassword
+    };
+
+    return this.http.post(this.baseURL + "changeUserPassword.php", obj,{'headers':headers})
+  }
+
 }
