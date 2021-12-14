@@ -22,7 +22,7 @@ export class ProductPageComponent implements OnInit {
 
   public id = "";
 
-  product: Array<{productID: number, name: string, description: string, price: number, filePath: string}> = [];
+  product: Array<{productID: number, name: string, description: string, price: number, filePath: string, amount: number}> = [];
 
   constructor(private _Activatedroute:ActivatedRoute, private productGet:GetSelectedProductService, private cart:GetShoppingCartService, private router: Router, private review: ReviewServiceService, private user: UserService) {
     this._Activatedroute.paramMap.subscribe(params => {
@@ -37,6 +37,7 @@ export class ProductPageComponent implements OnInit {
             this.product.push({
               productID: Object(data)[index].productID,
               name: Object(data)[index].name,
+              amount: +Object(data)[index].amount,
               description: Object(data)[index].description,
               price: Object(data)[index].price,
               filePath: Object(data)[index].filePath });
