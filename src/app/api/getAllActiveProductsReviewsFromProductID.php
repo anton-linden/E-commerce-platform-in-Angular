@@ -10,25 +10,18 @@ $username = 'root';
 $password = '';
 $dbname = 'ws2';
 
-if (isset($_GET['username'])) {
-    $uname = $_GET['username'];
+if (isset($_GET['productID'])) {
+    $productID = $_GET['productID'];
 } else {
-    exit("WARNING, No username was gotten");
+    exit("WARNING, No productID was gotten");
 }
 
-if ($uname) {
+if ($productID) {
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
+  if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
 
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
-  //Get cart contents.
-  $sql = "SELECT userID FROM users WHERE username = '$uname'";
-  $result = $conn->query($sql);
-
+  $result = $conn->query("SELECT grade, reviewText FROM reviews WHERE productID = '$productID' AND hidden = 0");
   echo json_encode($result -> fetch_all(MYSQLI_ASSOC));
 
   $conn->close();

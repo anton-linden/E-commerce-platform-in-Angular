@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'user-menu', component: UserMenuComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'admin-product', component: AEditComponent},
-  {path: 'admin-panel', component: AdminPanelComponent},
+  {path: 'admin-panel', component: AdminPanelComponent}
 ];
 
 @NgModule({

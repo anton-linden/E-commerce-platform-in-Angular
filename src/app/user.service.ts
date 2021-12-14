@@ -12,6 +12,8 @@ export class UserService {
 
   constructor(private http:HttpClient) {}
 
+  getCustomerIDFromUsername(Username: string) { return this.http.get(this.baseURL + "getCustomerIDFromUsername.php?username=" + Username); }
+
   getUserAuth(Username: string) {
     return this.http.get(this.baseURL + "getUserRoleFromUsername.php?username=" + Username);
   }

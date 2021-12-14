@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
 import { GetShoppingCartService } from 'src/app/get-shopping-cart.service';
+import { ReviewServiceService } from 'src/app/review-service.service';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-product-page',
@@ -12,11 +14,17 @@ import { GetShoppingCartService } from 'src/app/get-shopping-cart.service';
 })
 export class ProductPageComponent implements OnInit {
 
+  reviewsArray = new Array();
+  reviewing: boolean = false;
+
+  scoreArray = new Array(0, 0, 0, 0, 0);
+  averageGrade: number = 0;
+
   public id = "";
 
   product: Array<{productID: number, name: string, description: string, price: number, filePath: string}> = [];
 
-  constructor(private _Activatedroute:ActivatedRoute, private productGet:GetSelectedProductService, private cart:GetShoppingCartService, private router: Router) {
+  constructor(private _Activatedroute:ActivatedRoute, private productGet:GetSelectedProductService, private cart:GetShoppingCartService, private router: Router, private review: ReviewServiceService, private user: UserService) {
     this._Activatedroute.paramMap.subscribe(params => {
 
       var id: string = JSON.stringify(params.get('id')).replace(/['"]+/g, '');
@@ -36,6 +44,55 @@ export class ProductPageComponent implements OnInit {
         })
       }
     });
+
+    if (!this.isReviewing())
+      this.getReviews();
+  }
+
+  isReviewing() { if (JSON.stringify(sessionStorage.getItem('reviewing')).replace(/['"]+/g, '') == "TRUE") { return true; } return false; }
+
+  addReview(value: any) {
+    if (value.star == '') { alert("No stars selected."); return; }
+    if (+value.star > 5 || +value.star < 1) { console.warn("Stars are invalid."); return; }
+
+    this.user.getCustomerIDFromUsername(this.getUserFromSessionStorage()).subscribe(data=>{
+        this.review.addReview(+this.product[0].productID, +Object(data).customerID, +value.star, value.reviewTextArea).subscribe(data=>{
+          if (data == 2) { console.warn("An error has occured while INSERTING"); alert("Your review couldn't be registred."); return; }
+          sessionStorage.removeItem("reviewing");
+          window.location.reload();
+        });
+    });
+
+  }
+
+  getReviews() {
+    let totalScore = 0;
+
+    this.review.getAllActiveProductsReviewsFromProductID(this.id).subscribe(data=>{
+      const reviewArray: any[] = Array.of(Object.values(data))[0];
+
+      for (let i = 0; i < reviewArray.length; i++) {
+        this.reviewsArray.push([reviewArray[i].reviewText, reviewArray[i].grade]);
+        totalScore += +reviewArray[i].grade;
+        this.scoreArray[+reviewArray[i].grade-1]++;
+      }
+
+      this.averageGrade = totalScore / reviewArray.length;
+    })
+  }
+
+  getUserFromSessionStorage() {
+    if (sessionStorage.getItem('Username')) {
+      let sessionUser: string = JSON.stringify(sessionStorage.getItem('Username'));
+
+      if (sessionUser != "null") {
+        if (sessionUser.length >= 1) {
+          sessionUser = sessionUser.replace(/['"]+/g, '');
+          return sessionUser.toString();
+        }
+      }
+    }
+    return "null";
   }
 
   addToCart() {
@@ -64,6 +121,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.reviewing = this.isReviewing();
   }
 
 }
