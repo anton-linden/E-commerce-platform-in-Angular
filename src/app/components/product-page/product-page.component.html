@@ -13,10 +13,11 @@
       <div class="border m-5">
         <div class="m-3">
           <h4>Pris: {{product.price}} kr</h4>
-          <h6>Lager status: I lager</h6>
+          <h6 *ngIf="product.amount > 0">Lager status: {{product.amount}} st</h6>
+          <h6 *ngIf="product.amount <= 0">Lager status: Slut i lager!</h6>
           <h6>Leveranstid: 3-5 dagar</h6>
           <br>
-          <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="addToCart()">Lägg till i varukorgen</button>
+          <button *ngIf="product.amount > 0" class="btn btn-primary btn-lg btn-block" type="submit" (click)="addToCart()">Lägg till i varukorgen</button>
         </div>
       </div>
     </div>

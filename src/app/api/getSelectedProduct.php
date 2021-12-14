@@ -25,7 +25,7 @@ if ($prodID) {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql = "SELECT productID, name, description, price, filePath FROM products WHERE productID = '$prodID' AND hidden=0";
+  $sql = "SELECT productID, name, description, price, filePath, amount FROM products WHERE productID = '$prodID' AND hidden=0";
   $result = $conn->query($sql);
 
   echo json_encode($result -> fetch_all(MYSQLI_ASSOC));
