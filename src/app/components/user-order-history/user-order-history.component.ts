@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GetShoppingCartService } from 'src/app/get-shopping-cart.service';
 import { OrdersService } from 'src/app/orders.service';
 
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-user-order-history',
   templateUrl: './user-order-history.component.html',
@@ -11,7 +13,7 @@ export class UserOrderHistoryComponent implements OnInit {
 
   orders: Array<{OrderID: number, products: Array<{productID: number, amount: number, price: number, name: string, description: string, filePath: string}>}> = [];
 
-  constructor(private cart:GetShoppingCartService, private order: OrdersService) { // This code is a mess, split into functions and maybe merge some php files.
+  constructor(private cart:GetShoppingCartService, private order: OrdersService, private router: Router) { // This code is a mess, split into functions and maybe merge some php files.
 
     let sessionUser: string = JSON.stringify(sessionStorage.getItem('Username')).replace(/['"]+/g, '');
 
@@ -50,6 +52,13 @@ export class UserOrderHistoryComponent implements OnInit {
         })
       })
     }
+  }
+
+  navigateToRateProductView(ProductID: number) {
+    console.log(ProductID);
+    sessionStorage.setItem('reviewing', "TRUE");
+    //url = with productID
+    //this.router
   }
 
   ngOnInit(): void {

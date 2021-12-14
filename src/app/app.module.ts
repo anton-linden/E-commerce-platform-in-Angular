@@ -25,6 +25,7 @@ import { UserInformationSettingsComponent } from './components/user-information-
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

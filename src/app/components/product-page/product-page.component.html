@@ -23,3 +23,123 @@
   </div>
 
 </div>
+
+<div class="">
+  <div class="container-fluid px-1 py-5 mx-auto" *ngIf="!reviewing">
+      <div class="row justify-content-center">
+          <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
+              <div class="card">
+                  <div class="row justify-content-left d-flex">
+                      <div class="col-md-4 d-flex flex-column">
+                          <div class="rating-box">
+                              <h1 class="pt-4">{{averageGrade}}</h1> <!-- TODO: Average in js -->
+                              <p class="">out of 5</p>
+                          </div>
+
+                          <div>
+                            <span class="fa fa-star star-active mx-1" *ngIf="averageGrade >= 1"></span>
+                            <span class="fa fa-star star-inactive mx-1" *ngIf="averageGrade < 1"></span>
+
+                            <span class="fa fa-star star-active mx-1" *ngIf="averageGrade >= 2"></span>
+                            <span class="fa fa-star star-inactive mx-1" *ngIf="averageGrade < 2"></span>
+
+                            <span class="fa fa-star star-active mx-1" *ngIf="averageGrade >= 3"></span>
+                            <span class="fa fa-star star-inactive mx-1" *ngIf="averageGrade < 3"></span>
+
+                            <span class="fa fa-star star-active mx-1" *ngIf="averageGrade >= 4"></span>
+                            <span class="fa fa-star star-inactive mx-1" *ngIf="averageGrade < 4"></span>
+
+                            <span class="fa fa-star star-active mx-1" *ngIf="averageGrade >= 5"></span>
+                            <span class="fa fa-star star-inactive mx-1" *ngIf="averageGrade < 5"></span>
+                          </div>
+
+                      </div>
+                      <div class="col-md-8">
+                          <div class="rating-bar0 justify-content-center">
+                              <table class="text-left mx-auto">
+                                  <tr>
+                                      <td class="rating-label">5 stars</td>
+                                      <td class="rating-bar">
+                                          <div class="bar-container">
+                                              <div class="bar-5"></div>
+                                          </div>
+                                      </td>
+                                      <td class="text-right">{{scoreArray[4]}}</td> <!-- TODO: amounts -->
+                                  </tr>
+                                  <tr>
+                                      <td class="rating-label">4 stars</td>
+                                      <td class="rating-bar">
+                                          <div class="bar-container">
+                                              <div class="bar-4"></div>
+                                          </div>
+                                      </td>
+                                      <td class="text-right">{{scoreArray[3]}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="rating-label">3 stars</td>
+                                      <td class="rating-bar">
+                                          <div class="bar-container">
+                                              <div class="bar-3"></div>
+                                          </div>
+                                      </td>
+                                      <td class="text-right">{{scoreArray[2]}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="rating-label">2 stars</td>
+                                      <td class="rating-bar">
+                                          <div class="bar-container">
+                                              <div class="bar-2"></div>
+                                          </div>
+                                      </td>
+                                      <td class="text-right">{{scoreArray[1]}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="rating-label">1 star</td>
+                                      <td class="rating-bar">
+                                          <div class="bar-container">
+                                              <div class="bar-1"></div>
+                                          </div>
+                                      </td>
+                                      <td class="text-right">{{scoreArray[0]}}</td>
+                                  </tr>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="card" *ngFor="let review of reviewsArray">
+                  <div class="row text-left">
+                      <h4 class="blue-text mt-3">A user review graded: {{review[1]}}</h4>
+                      <p class="content">"{{review[0]}}"</p>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+
+
+  <div *ngIf="reviewing">
+
+    <div class="container d-flex justify-content-center mt-200">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="stars">
+                    <form #myForm="ngForm" (submit)="addReview(myForm.value)" novalidate>
+                      <input class="star star-5" id="star-5" type="radio" name="star" value="5" ngModel/> <label class="star star-5" for="star-5"></label>
+                      <input class="star star-4" id="star-4" type="radio" name="star" value="4" ngModel/> <label class="star star-4" for="star-4"></label>
+                      <input class="star star-3" id="star-3" type="radio" name="star" value="3" ngModel/> <label class="star star-3" for="star-3"></label>
+                      <input class="star star-2" id="star-2" type="radio" name="star" value="2" ngModel/> <label class="star star-2" for="star-2"></label>
+                      <input class="star star-1" id="star-1" type="radio" name="star" value="1" ngModel/> <label class="star star-1" for="star-1"></label>
+                      <textarea name="reviewTextArea" rows="5" cols="50" maxlength="100" ngModel></textarea>
+                      <button class="btn btn-primary btn-lg btn-block" type="submit">Sumbit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
