@@ -1,5 +1,5 @@
 <?php
-$servername = 'localhost';
+$servername = 'localhost';;
 $username = 'root';
 $password = '';
 $dbname = 'ws2';
@@ -20,14 +20,20 @@ if (strlen($customerID) > 0) {
     die("Connection failed: " . $conn->connect_error);
   }
 
+try {
+  $conn->begin_transaction();
   $sql = "INSERT INTO orders (customerID) VALUES ('$customerID')";
+  $conn->query($sql);
+  
+  //In no error have been thrown
+  $conn-> commit();
+  echo 1;
+}
+catch ( Exception $e ) {
 
-  if ($conn->query($sql) === TRUE) {
-    echo 1;
-  } else {
+    $conn->rollback(); 
     echo 2;
-  }
-
+}
   $conn->close();
 }
 ?>
