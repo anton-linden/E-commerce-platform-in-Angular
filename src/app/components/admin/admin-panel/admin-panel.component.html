@@ -1,1 +1,14 @@
-<p>admin-panel works!</p>
+<div class="btn-group mt-5" role="group" aria-label="Basic radio toggle button group">
+  <input type="radio" class="btn-check" (click)="changeView('orders')" name="btnradio" id="btnradio1" autocomplete="off" checked>
+  <label class="btn btn-outline-dark" for="btnradio1">Orders</label>
+
+  <input type="radio" class="btn-check" (click)="changeView('products')" name="btnradio" id="btnradio2" autocomplete="off">
+  <label class="btn btn-outline-dark" for="btnradio2">Products</label>
+
+  <input type="radio" class="btn-check" (click)="changeView('accounts')" name="btnradio" id="btnradio3" autocomplete="off">
+  <label class="btn btn-outline-dark" for="btnradio3">Accounts</label>
+</div>
+
+<app-a-order-page *ngIf="view == 'orders'"></app-a-order-page>
+<!--<app-user-order-history *ngIf="view == orders"></app-user-order-history>
+<app-user-settings *ngIf="view == accounts"></app-user-settings>-->

@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPanelComponent implements OnInit {
 
+  view: string = "";
+
   constructor() { }
 
   ngOnInit(): void {
+    this.view = "orders";
+  }
+
+  changeView(type: string) {
+    if (type.length < 1) return;
+    this.view = type;
   }
 
 }

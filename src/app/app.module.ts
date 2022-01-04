@@ -26,6 +26,7 @@ import { UserInformationSettingsComponent } from './components/user-information-
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AOrderPageComponent } from './components/admin/a-order-page/a-order-page.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ShoppingCartComponent,
     UserSettingsComponent,
     UserInformationSettingsComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    AOrderPageComponent
   ],
   imports: [
     BrowserModule,
