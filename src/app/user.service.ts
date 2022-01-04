@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  baseURL: string = "http://localhost/ws/webbshop/src/app/api/";
+  baseURL: string = "http://localhost/webbshop/src/app/api/";
   //baseURL: string = "/api/";
 
   constructor(private http:HttpClient) {}
