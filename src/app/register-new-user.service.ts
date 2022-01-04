@@ -8,7 +8,7 @@ import { UserModule } from "src/app/user/user.module";
 })
 export class RegisterNewUserService {
 
-  baseURL: string = "http://localhost/ws/webbshop/src/app/api/";
+  baseURL: string = "http://localhost/webbshop/src/app/api/";
   //baseURL: string = "/api/";
 
   constructor(private http:HttpClient) {}

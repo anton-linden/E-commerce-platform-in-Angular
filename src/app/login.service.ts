@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
 
-  baseURL: string = "http://localhost/ws/webbshop/src/app/api/";
+  baseURL: string = "http://localhost/webbshop/src/app/api/";
   //baseURL: string = "/api/";
 
   constructor(private http:HttpClient) {}

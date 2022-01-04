@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
 
-  baseURL: string = "http://localhost/ws/webbshop/src/app/api/";
+  baseURL: string = "http://localhost/webbshop/src/app/api/";
   //baseURL: string = "/api/";
 
   constructor(private http:HttpClient) {}
