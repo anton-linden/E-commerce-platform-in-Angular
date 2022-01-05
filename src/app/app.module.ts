@@ -28,6 +28,7 @@ import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AOrderPageComponent } from './components/admin/a-order-page/a-order-page.component';
 import { AAccountsPageComponent } from './components/admin/a-accounts-page/a-accounts-page.component';
+import { AProductListingPageComponent } from './components/admin/a-product-listing-page/a-product-listing-page.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { AAccountsPageComponent } from './components/admin/a-accounts-page/a-acc
     UserInformationSettingsComponent,
     AdminPanelComponent,
     AOrderPageComponent,
-    AAccountsPageComponent
+    AAccountsPageComponent,
+    AProductListingPageComponent
   ],
   imports: [
     BrowserModule,
