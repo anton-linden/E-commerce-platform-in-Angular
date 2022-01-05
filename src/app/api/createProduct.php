@@ -23,7 +23,7 @@ if (strlen($name) > 0 && strlen($price) > 0) {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql = "INSERT INTO products (name, description, price, filePath, active) VALUES ('$name', '$description', '$price', '$filePath', 1)";
+  $sql = "INSERT INTO products (name, description, price, filePath, hidden) VALUES ('$name', '$description', '$price', '$filePath', 1)";
 
   if ($conn->query($sql) === TRUE) {
     echo 1;
