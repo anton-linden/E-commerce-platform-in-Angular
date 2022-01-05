@@ -44,7 +44,7 @@ export class UserSettingsComponent implements OnInit {
     if (sessionStorage.getItem('Username') == null) return false
 
     this.user.getUserAuth(JSON.stringify(sessionStorage.getItem('Username')).replace(/['"]+/g, '')).subscribe(data => {
-      if ( data == "No role found") return false
+      if ( data == "No role found" || data == null) return false;
       this.isAdminPanelAllowed = true;
       return true;
     })
