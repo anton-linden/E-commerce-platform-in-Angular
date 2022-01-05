@@ -33,8 +33,9 @@
                   <div class="row justify-content-left d-flex">
                       <div class="col-md-4 d-flex flex-column">
                           <div class="rating-box">
-                              <h1 class="pt-4">{{averageGrade}}</h1> <!-- TODO: Average in js -->
-                              <p >out of 5</p>
+                              <h1 class="pt-4" *ngIf="averageGrade">{{averageGrade}}</h1>
+                              <h1 class="pt-4" *ngIf="!averageGrade">0</h1> <!-- TODO: Average in js -->
+                              <p>out of 5</p>
                           </div>
 
                           <div>
