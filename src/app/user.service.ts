@@ -12,11 +12,10 @@ export class UserService {
 
   constructor(private http:HttpClient) {}
 
+  getAllUsers() { return this.http.get(this.baseURL + "getAllUsers.php"); }
   getCustomerIDFromUsername(Username: string) { return this.http.get(this.baseURL + "getCustomerIDFromUsername.php?username=" + Username); }
-
-  getUserAuth(Username: string) {
-    return this.http.get(this.baseURL + "getUserRoleFromUsername.php?username=" + Username);
-  }
+  getRoleFromRoleID(RoleID: number) { return this.http.get(this.baseURL + "getRoleNameFromRoleID.php?roleID=" + RoleID); }
+  getUserAuth(Username: string) { return this.http.get(this.baseURL + "getUserRoleFromUsername.php?username=" + Username); }
 
   validateAndChangeUserPassword(Username: string, CurrentPassword: string, NewPassword: string) {
     const headers = { 'content-type': 'application/json'}

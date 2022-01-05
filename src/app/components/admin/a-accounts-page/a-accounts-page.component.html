@@ -1,0 +1,17 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">User ID</th>
+      <th scope="col">Username</th>
+      <th scope="col">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of accounts">
+      <th scope="row">{{item.UserID}}</th>
+      <td>{{item.Username}}</td>
+      <td>{{item.Role}}</td>
+      <td><button type="button" name="button" class="btn btn-danger">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
