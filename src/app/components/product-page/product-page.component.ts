@@ -57,7 +57,9 @@ export class ProductPageComponent implements OnInit {
     if (+value.star > 5 || +value.star < 1) { console.warn("Stars are invalid."); return; }
 
     this.user.getCustomerIDFromUsername(this.getUserFromSessionStorage()).subscribe(data=>{
-        this.review.addReview(+this.product[0].productID, +Object(data).customerID, +value.star, value.reviewTextArea).subscribe(data=>{
+      console.log(+this.product[0].productID);
+
+        this.review.addReview(+Object(data).customerID, +this.product[0].productID, +value.star, value.reviewTextArea).subscribe(data=>{
           if (data == 2) { console.warn("An error has occured while INSERTING"); alert("Your review couldn't be registred."); return; }
           sessionStorage.removeItem("reviewing");
           window.location.reload();
