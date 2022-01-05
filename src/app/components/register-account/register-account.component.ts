@@ -39,7 +39,6 @@ export class RegisterAccountComponent implements OnInit {
   sendUserInformation() { // Creates a account and a customer.
     this.register.addUser(this.user)
       .subscribe(data => {
-        console.log(data)
         if (data == 1) {
           this.status = "Account successfully created!";
 
@@ -49,7 +48,6 @@ export class RegisterAccountComponent implements OnInit {
           this.cart.getUserData(this.user.Username).subscribe(data=>{
             this.register.createCustomerFromID(Object(data)[0].userID)
               .subscribe(data => {
-                console.log(data)
                 if (data == 1) {
                   sessionStorage.setItem('Username', this.user.Username); //Issue if username is not valid
                   window.location.reload();

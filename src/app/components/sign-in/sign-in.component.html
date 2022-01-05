@@ -5,7 +5,7 @@
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
 
-            <form #login="ngForm" (ngSubmit)="submit(login)" class="" action="index.html" method="post">
+            <form #login="ngForm" (ngSubmit)="submit(login)"  action="index.html" method="post">
               <h3 class="mb-5">Sign in</h3>
 
               <div class="form-outline mb-4">
@@ -35,7 +35,7 @@
               <br>
               <button class="btn btn-primary btn-lg btn-block col-6" type="submit" id="submit" value="Submit">Login</button>
 
-              <div class="">
+              <div >
                 <p class="text-start mb-1 mt-5"><del>Forgot your password?</del></p>
                 <p class="text-primary text-start pointer" routerLink="/register-user">Don't have an account? Register here!</p>
               </div>

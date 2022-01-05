@@ -15,32 +15,18 @@ export class RegisterNewUserService {
 
   addUser(user:UserModule): Observable<any> {
     const headers = { 'content-type': 'application/json'}
-    const body = user;
-    let url = this.baseURL + "createUser.php";
-    return this.http.post(url, body,{'headers':headers})
+    return this.http.post(this.baseURL + "createUser.php", user, {'headers':headers})
   }
 
   createCustomerFromID(UserID: number) {
-    let url = this.baseURL + "createCustomerFromID.php";
     const headers = { 'content-type': 'application/json'}
-
-    var obj = {
-      userID: UserID
-    };
-
-    const body=obj;
-    console.log(body)
-    return this.http.post(url, body,{'headers':headers})
+    var obj = { userID: UserID };
+    return this.http.post(this.baseURL + "createCustomerFromID.php", obj, {'headers':headers})
   }
 
   createCustomer() { // Without a userID, a customer doesn't need to be a logged in user.
-    let url = this.baseURL + "createCustomer.php";
     const headers = { 'content-type': 'application/json'}
-
     var obj = {};
-
-    const body=obj;
-    console.log(body)
-    return this.http.post(url, body,{'headers':headers})
+    return this.http.post(this.baseURL + "createCustomer.php", obj, {'headers':headers})
   }
 }

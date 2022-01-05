@@ -12,55 +12,24 @@ export class OrdersService {
 
   constructor(private http:HttpClient) {}
 
+  getCustomer(UserID: number) { return this.http.get(this.baseURL + "getCustomerFromUserID.php?userID=" + UserID); }
+  getOrderIDFromCustomerID(CustomerID: number) { return this.http.get(this.baseURL + "getOrderIDFromCustomerID.php?customerID=" + CustomerID); }
+  getAllOrdersFromCustomerID(CustomerID: number) { return this.http.get(this.baseURL + "getAllOrdersFromCustomerID.php?customerID=" + CustomerID); }
+  getOrderFromOrderID(OrderID: number) { return this.http.get(this.baseURL + "getOrderFromOrderID.php?orderID=" + OrderID); }
+  getProductFromProductID(ProductID: number) { return this.http.get(this.baseURL + "getProductFromProductID.php?productID=" + ProductID); }
+
   updateCustomer(obj: any) {
-    let url = this.baseURL + "updateCustomer.php";
     const headers = { 'content-type': 'application/json'}
-
-    const body=obj;
-    return this.http.post(url, body,{'headers':headers})
+    return this.http.post(this.baseURL + "updateCustomer.php", obj, {'headers':headers})
   }
-
-  getCustomer(UserID: number) {
-    let url = this.baseURL + "getCustomerFromUserID.php?userID=" + UserID;
-    return this.http.get(url);
-  }
-
-  getOrderIDFromCustomerID(CustomerID: number) {
-    let url = this.baseURL + "getOrderIDFromCustomerID.php?customerID=" + CustomerID;
-    return this.http.get(url);
-  }
-
-  getAllOrdersFromCustomerID(CustomerID: number) {
-    let url = this.baseURL + "getAllOrdersFromCustomerID.php?customerID=" + CustomerID;
-    return this.http.get(url);
-  }
-
-  getOrderFromOrderID(OrderID: number) {
-    let url = this.baseURL + "getOrderFromOrderID.php?orderID=" + OrderID;
-    return this.http.get(url);
-  }
-
-  getProductFromProductID(ProductID: number) {
-    let url= this.baseURL + "getProductFromProductID.php?productID=" + ProductID;
-    return this.http.get(url);
-  }
-
 
   createOrder(CustomerID: number) {
-    let url = this.baseURL + "createOrder.php";
     const headers = { 'content-type': 'application/json'}
-
-    var obj = {
-      customerID: CustomerID
-    };
-
-    const body=obj;
-    console.log(body)
-    return this.http.post(url, body,{'headers':headers})
+    var obj = { customerID: CustomerID };
+    return this.http.post(this.baseURL + "createOrder.php", obj, {'headers':headers})
   }
 
   addProductToOrder(ProductID: number, OrderID: number, ProductPrice: number, ProductAmount: number): Observable<any> { //Untested
-    let url = this.baseURL + "addProductToOrder.php";
     const headers = { 'content-type': 'application/json'}
 
     var obj = {
@@ -70,8 +39,6 @@ export class OrdersService {
       productAmount: ProductAmount
     };
 
-    const body=obj;
-    console.log(body)
-    return this.http.post(url, body,{'headers':headers})
+    return this.http.post(this.baseURL + "addProductToOrder.php", obj, {'headers':headers})
   }
 }
