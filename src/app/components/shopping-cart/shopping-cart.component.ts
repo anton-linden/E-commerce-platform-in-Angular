@@ -68,25 +68,17 @@ export class ShoppingCartComponent implements OnInit {
 
     if (this.cart_items.length > 0) {
       this.order.getCustomer(this.userID).subscribe(data => {
-          console.log(data)
           this.order.createOrder(Object(data)[0].customerID).subscribe(data2 => { //CustomerID must be present.
-              console.log(data2) //getOrderIDFromCustomerID
               this.order.getOrderIDFromCustomerID(Object(data)[0].customerID).subscribe(data => {
                 for (let index = 1; index <= this.cart_items.length; index++) {
                   this.order.addProductToOrder(Object(this.cart_items)[index-1].productID, Object(data)[0].orderID, Object(this.cart_items)[index-1].price, Object(this.cart_items)[index-1].amount).subscribe(data => {
                   })
                 }
-
                 if (this.cart_items.length > 0) {
                   this.cart.cleanCart(this.userID)
                     .subscribe(data => {
-                      console.log(data)
-                      if (data == 1) {
-                      } else if (data == 2) {
-                      }
                       this.reloadPage();
                     })
-
                   alert("Din order är nu lagd!");
                 }
               })
@@ -95,22 +87,10 @@ export class ShoppingCartComponent implements OnInit {
       }
   }
 
-  removeItem(productID: number) {
-    console.log("Remove: " + productID);
-
-    this.cart.removeProductFromCart(productID, this.userID)
-      .subscribe(data => {
-        console.log(data)
-        if (data == 1) {
-        } else if (data == 2) {
-        }
-        this.reloadPage();
-      })
-  }
+  removeItem(productID: number) { this.cart.removeProductFromCart(productID, this.userID).subscribe(data => { this.reloadPage(); }) }
 
   callchangeAmountOfProductInCart(ProductsInCartID: number, Amount: number) {
-    this.cart.changeAmountOfProductInCart(ProductsInCartID, Amount)
-      .subscribe(data => {
+    this.cart.changeAmountOfProductInCart(ProductsInCartID, Amount).subscribe(data => {
         this.reloadPage();
       })
   }
@@ -126,7 +106,5 @@ export class ShoppingCartComponent implements OnInit {
     this.callchangeAmountOfProductInCart(ProductsInCartID, Amount);
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

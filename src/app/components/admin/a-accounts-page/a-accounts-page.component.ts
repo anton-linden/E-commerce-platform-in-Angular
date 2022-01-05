@@ -18,8 +18,6 @@ export class AAccountsPageComponent implements OnInit {
     this.users.getAllUsers().subscribe(data=>{
 
       for (let i = 0; i < Object(data).length; i++) {
-        console.log(Object(data)[i].role, Object(data)[i].role != 0);
-
         if (Object(data)[i].role > 0) {
           this.users.getRoleFromRoleID(Object(data)[i].role).subscribe(data2=>{
             this.accounts.push({

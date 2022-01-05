@@ -105,15 +105,11 @@ export class ProductPageComponent implements OnInit {
 
         this.cart.addProductToCart(+this.product[0].productID, +userID)
           .subscribe(data => {
-            console.log(data)
             if (data == 1) {
-              //Goto cart
-              this.router.navigate(['shopping-cart']);
+              this.router.navigate(['shopping-cart']);  //Goto cart
             } else if (data == 2) {
-              //Decline cart
-              this.router.navigate(['shopping-cart']);
+              this.router.navigate(['shopping-cart']);  //Decline cart
             }
-            console.log(data);
           })
       })
     } else {

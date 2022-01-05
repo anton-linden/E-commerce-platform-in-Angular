@@ -54,14 +54,6 @@ export class UserOrderHistoryComponent implements OnInit {
     }
   }
 
-  navigateToRateProductView(ProductID: number) {
-    console.log(ProductID);
-    sessionStorage.setItem('reviewing', "TRUE");
-    //url = with productID
-    //this.router
-  }
-
-  ngOnInit(): void {
-  }
-
+  navigateToRateProductView(ProductID: number) { sessionStorage.setItem('reviewing', "TRUE"); }
+  ngOnInit(): void {}
 }

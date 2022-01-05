@@ -33,8 +33,6 @@ export class UserInformationSettingsComponent implements OnInit {
             });
           })
         })
-
-        console.log(this.customer);
     }
   }
 

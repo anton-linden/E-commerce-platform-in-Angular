@@ -16,9 +16,6 @@ export class HeaderComponent implements OnInit {
   getUserFromSessionStorage() {
     if (sessionStorage.getItem('Username')) {
       let sessionUser: string = JSON.stringify(sessionStorage.getItem('Username'));
-
-      //console.warn("sessionUser: " + sessionUser);
-
       if (sessionUser != "null") {
         if (sessionUser.length >= 1) {
           sessionUser = sessionUser.replace(/['"]+/g, '');

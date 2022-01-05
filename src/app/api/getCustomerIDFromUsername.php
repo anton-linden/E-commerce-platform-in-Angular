@@ -5,7 +5,7 @@ $username = 'adm';
 $password = 'myserverx';
 $dbname = 'ws';*/
 
-$servername = 'localhost';;
+$servername = 'localhost';
 $username = 'root';
 $password = '';
 $dbname = 'ws2';

@@ -13,8 +13,6 @@ export class AdminService {
   constructor(private http:HttpClient) {}
 
   createProduct(Name: string, Description: string, Price: number, FilePath: string) {
-    let url = this.baseURL + "createProduct.php";
-    //let url = "/api/createProduct.php";
     const headers = { 'content-type': 'application/json'}
 
     var obj = {
@@ -24,8 +22,6 @@ export class AdminService {
       filePath: FilePath
     };
 
-    const body=obj;
-    console.log(body)
-    return this.http.post(url, body,{'headers':headers})
+    return this.http.post(this.baseURL + "createProduct.php", obj, {'headers':headers})
   }
 }

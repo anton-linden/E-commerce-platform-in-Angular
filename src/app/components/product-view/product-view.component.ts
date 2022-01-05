@@ -16,9 +16,6 @@ export class ProductViewComponent implements OnInit {
 
   constructor(private productGet:GetActiveProductsService) {
     this.productGet.getData().subscribe(data=>{
-
-      console.warn(Object(data).length);
-
       for (let index = 0; this.products.length < Object(data).length; index++) {
         this.products.push({
           productID: Object(data)[index].productID,

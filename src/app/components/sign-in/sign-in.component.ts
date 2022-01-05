@@ -31,7 +31,6 @@ export class SignInComponent implements OnInit {
     this.enteredPwd = this.enteredPwd.replace(/[' ]+/g, '');
 
     this.user.getData(this.enteredUsername, this.enteredPwd).subscribe(data=>{
-      console.warn(data);
       if (data == 1) {
         this.status = "Login successfull";
         sessionStorage.setItem('Username', this.enteredUsername);

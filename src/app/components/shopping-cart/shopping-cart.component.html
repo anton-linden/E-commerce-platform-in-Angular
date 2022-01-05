@@ -20,9 +20,9 @@
             <h5 class="col-2">{{item.price}} kr</h5>
 
             <div class="col-3">
-              <i class="" (click)="decreaseAmountOfProductInCart(item.productsInCartID, item.amount, item.productID)">-</i>
+              <i  (click)="decreaseAmountOfProductInCart(item.productsInCartID, item.amount, item.productID)">-</i>
               <input type="number"  disabled="disabled" value="{{item.amount}}" class="m-2 text-center col-md-6">
-              <i class="" (click)="increaseAmountOfProductInCart(item.productsInCartID, item.amount)">+</i>
+              <i  (click)="increaseAmountOfProductInCart(item.productsInCartID, item.amount)">+</i>
             </div>
 
             <!--<button type="button" class="btn btn-danger col-2" (click)="removeItem(item.productID)" name="button">Remove</button>-->

@@ -7,7 +7,7 @@
 
           <div class="card-body p-5 text-center">
 
-            <form #login="ngForm" (ngSubmit)="submit(login)" class="" action="index.html" method="post">
+            <form #login="ngForm" (ngSubmit)="submit(login)"  action="index.html" method="post">
               <h3 class="mb-5">Register account</h3>
 
               <div class="form-outline mb-4">
@@ -34,7 +34,7 @@
             <br>
             <label *ngIf="status.length > 0" class="text-danger animate__animated animate__bounceIn" for="">{{status}}</label>
 
-            <div class="">
+            <div >
               <p class="text-primary text-start mb-1 mt-5" routerLink="/sign-in-page" >Already have an account? Login here!</p>
             </div>
 
