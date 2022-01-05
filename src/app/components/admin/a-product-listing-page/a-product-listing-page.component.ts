@@ -24,16 +24,20 @@ export class AProductListingPageComponent implements OnInit {
           Price: Object(data)[i].price,
           Amount: Object(data)[i].amount,
           Status: Object(data)[i].hidden,
-          FilePath: Object(data)[i].filePath,
+          FilePath: Object(data)[i].filePath
         });
       }
-      console.log(this.products);
-
-    })
+    });
   }
 
   deleteProduct(ProductID: number) {
-    // TODO: Implment.
+    if (!confirm("Are you sure you want to delete this product?")) return;
+
+    this.productHandler.deleteProductFromProductID(ProductID).subscribe(data=>{
+      if (data == 2) return alert("Failed to delete the product");
+      alert("Product was successfully deleted. Page will reload.");
+      this.getAllProducts();
+    })
   }
 
   editProduct(ProductID: number) {

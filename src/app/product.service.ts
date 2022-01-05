@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductService {
-  
+
   baseURL: string = "http://localhost/webbshop/src/app/api/";
   //baseURL: string = "/api/";
 
@@ -13,11 +13,10 @@ export class ProductService {
 
   getAllProducts() { return this.http.get(this.baseURL + "getAllProducts.php"); }
 
-  deleteProductFromProductID(ProductID: number) {   // TODO: Implement!
+  deleteProductFromProductID(ProductID: number) {
     const headers = { 'content-type': 'application/json'}
     var obj = { productID: ProductID };
-
-    return this.http.post(this.baseURL + ".php", obj,{'headers':headers})
+    return this.http.post(this.baseURL + "deleteProductFromProductID.php", obj,{'headers':headers})
   }
 
 
