@@ -12,6 +12,13 @@ export class UserService {
 
   constructor(private http:HttpClient) {}
 
+  deleteUserWithUserID(UserID: number): Observable<any> {
+    const headers = { 'content-type': 'application/json'}
+    var obj = { userID: UserID };
+
+    return this.http.post(this.baseURL + "deleteUserWithUserID.php", obj,{'headers':headers})
+  }
+
   getAllUsers() { return this.http.get(this.baseURL + "getAllUsers.php"); }
   getCustomerIDFromUsername(Username: string) { return this.http.get(this.baseURL + "getCustomerIDFromUsername.php?username=" + Username); }
   getRoleFromRoleID(RoleID: number) { return this.http.get(this.baseURL + "getRoleNameFromRoleID.php?roleID=" + RoleID); }

@@ -39,8 +39,16 @@ export class AAccountsPageComponent implements OnInit {
     })
   }
 
-  deleteUser() {
-    // TODO: Write function. PHP, TS & HTML.
+  deleteUser(UserID: number) {
+    if (!confirm("Are you sure you want to delete this user?")) return;
+
+    this.users.deleteUserWithUserID(UserID).subscribe(data=>{
+      if (data == 2) return alert("Failed to delete user");
+
+      this.accounts = [];
+      alert("User was successfully deleted. Page will reload.");
+      this.getAllAccounts();
+    })
   }
 
   getCustomerFromUserID() {
