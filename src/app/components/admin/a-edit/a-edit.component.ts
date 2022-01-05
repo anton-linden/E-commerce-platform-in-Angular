@@ -7,32 +7,17 @@ import { AdminService } from 'src/app/admin.service';
   styleUrls: ['./a-edit.component.css']
 })
 export class AEditComponent implements OnInit {
-
-  //category: Array<number> = [1, 2, 3, 4, 5];
-
-  constructor(private admin: AdminService) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private admin: AdminService) {}
+  ngOnInit(): void {}
 
   saveProduct(productForm: any) {
+    if (!productForm.value.name) return alert("Name is missing");
+    if (!productForm.value.price) return alert("Price is missing.");
+    if (productForm.value.amount == null || productForm.value.amount.length < 1) return alert("Amount is missing.");
 
-    if (productForm.value.name) {
-      if (productForm.value.price) {
-        this.admin.createProduct(productForm.value.name, productForm.value.description, productForm.value.price, "testPath").subscribe(data=>{ //productForm.value.filePath
-          if (data == 1) {
-            alert("Product added");
-            window.location.reload();
-          } else {
-            alert("Something went wrong, try again later");
-          }
-        })
-      } else {
-        alert("Price is missing.");
-      }
-    } else {
-      alert("Name is missing");
-    }
-
+    this.admin.createProduct(productForm.value.name, productForm.value.description, productForm.value.price, "testPath", productForm.value.amount).subscribe(data=>{ //productForm.value.filePath
+      (data == 1) ? alert("Product added") : alert("Something went wrong, try again later");
+      window.location.reload();
+    })
   }
 }

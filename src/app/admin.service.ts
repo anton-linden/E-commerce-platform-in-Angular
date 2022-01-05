@@ -12,14 +12,15 @@ export class AdminService {
 
   constructor(private http:HttpClient) {}
 
-  createProduct(Name: string, Description: string, Price: number, FilePath: string) {
+  createProduct(Name: string, Description: string, Price: number, FilePath: string, Amount: number) {
     const headers = { 'content-type': 'application/json'}
 
     var obj = {
       name: Name,
       description: Description,
       price: Price,
-      filePath: FilePath
+      filePath: FilePath,
+      amount: Amount
     };
 
     return this.http.post(this.baseURL + "createProduct.php", obj, {'headers':headers})

@@ -38,7 +38,7 @@
     <form #productForm="ngForm" (ngSubmit)="saveProduct(productForm)" action="index.html" method="post">
       <div class="mb-3">
         <label for="name" class="form-label">Title</label>
-        <input class="form-control" id="title" maxlength="50" name="name" ngModel>
+        <input class="form-control" id="title" maxlength="50" name="name" required ngModel>
       </div>
 
       <div class="mb-3">
@@ -56,8 +56,13 @@
 
       <div class="input-group mb-3">
         <label for="price" class="form-label">Price</label>
-        <input type="number" class="form-control" id="price" max="999999999" min="0" name="price" aria-label="Dollar amount (with dot and two decimal places)" ngModel>
+        <input type="number" class="form-control" id="price" max="999999999" min="0" name="price" aria-label="Dollar amount (with dot and two decimal places)" required ngModel>
         <span class="input-group-text">kr</span>
+      </div>
+
+      <div class="input-group mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="price" max="999999999" min="0" name="amount" aria-label="Amount of product in storage" required ngModel>
       </div>
 
       <!--<div class="mb-3">
