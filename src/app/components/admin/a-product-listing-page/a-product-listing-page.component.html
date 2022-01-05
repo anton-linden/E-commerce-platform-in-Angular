@@ -1,3 +1,7 @@
+<div>
+  <button type="button" name="button" class="btn btn-lg btn-primary" routerLink="/admin-product">Add a new product</button>
+</div>
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -15,7 +19,7 @@
       <td>{{item.Name}}</td>
       <td>{{item.Price}}</td>
       <td>{{item.Amount}}</td>
-      <td *ngIf="item.Status == 1">Inactive</td> <!-- TODO: Add NGIF for status -->
+      <td *ngIf="item.Status == 1">Inactive</td>
       <td *ngIf="item.Status == 0">Active</td>
       <td><button type="button" name="button" class="btn btn-danger" (click)="deleteProduct(item.ProductID)">Delete</button></td>
     </tr>
