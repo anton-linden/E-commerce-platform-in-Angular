@@ -14,18 +14,13 @@ $name = $data["name"];
 $description = $data["description"];
 $price = $data["price"];
 $filePath = $data["filePath"];
+$amount = $data["amount"];
 
-if (strlen($name) > 0 && strlen($price) > 0) {
-  // Create connection
+if (strlen($name) > 0 && strlen($price) > 0 && strlen($amount) > 0) {
   $conn = new mysqli($servername, $username, $password, $dbname);
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+  if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
 
-  $sql = "INSERT INTO products (name, description, price, filePath, active) VALUES ('$name', '$description', '$price', '$filePath', 1)";
-
-  if ($conn->query($sql) === TRUE) {
+  if ($conn->query("INSERT INTO products (name, description, price, filePath, hidden, amount) VALUES ('$name', '$description', '$price', '$filePath', 1, '$amount')") === TRUE) {
     echo 1;
   } else {
     echo 2;
