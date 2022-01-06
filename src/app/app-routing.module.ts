@@ -12,6 +12,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 
 import { AEditComponent } from './components/admin/a-edit/a-edit.component';
 import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
+import { EditProductComponent } from './components/admin/edit-product/edit-product.component';
+import { AProductListingPageComponent } from './components/admin/a-product-listing-page/a-product-listing-page.component';
 
 const routes: Routes = [
   {path: '', component: ProductViewComponent},
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path: 'user-menu', component: UserMenuComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'admin-product', component: AEditComponent},
-  {path: 'admin-panel', component: AdminPanelComponent}
+  {path: 'admin-panel', component: AdminPanelComponent},
+  {path: 'admin-edit-product/:productID', component: EditProductComponent},
+  {path: 'admin-product-listing-page', component: AProductListingPageComponent}
 ];
 
 @NgModule({

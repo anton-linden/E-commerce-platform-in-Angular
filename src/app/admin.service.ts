@@ -12,6 +12,24 @@ export class AdminService {
 
   constructor(private http:HttpClient) {}
 
+  getProductInformation(ProductID: number) { return this.http.get(this.baseURL + "getProductFromProductID.php?productID=" + ProductID); }
+
+  updateProduct(ProductID: number, Name: string, Description: string, Price: number, FilePath: string, Amount: number, Status: number) {
+    const headers = { 'content-type': 'application/json'}
+
+    var obj = {
+      productID: ProductID,
+      name: Name,
+      description: Description,
+      price: Price,
+      filePath: FilePath,
+      amount: Amount,
+      hidden: +Status
+    };
+
+    return this.http.post(this.baseURL + "updateProduct.php", obj, {'headers':headers})
+  }
+
   createProduct(Name: string, Description: string, Price: number, FilePath: string, Amount: number, Status: boolean) {
     const headers = { 'content-type': 'application/json'}
 

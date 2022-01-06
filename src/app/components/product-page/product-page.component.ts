@@ -53,19 +53,16 @@ export class ProductPageComponent implements OnInit {
   isReviewing() { if (JSON.stringify(sessionStorage.getItem('reviewing')).replace(/['"]+/g, '') == "TRUE") { return true; } return false; }
 
   addReview(value: any) {
-    if (value.star == '') { alert("No stars selected."); return; }
-    if (+value.star > 5 || +value.star < 1) { console.warn("Stars are invalid."); return; }
+    if (value.star == '') return alert("No stars selected.");
+    if (+value.star > 5 || +value.star < 1) return console.warn("Stars are invalid.");
 
     this.user.getCustomerIDFromUsername(this.getUserFromSessionStorage()).subscribe(data=>{
-      console.log(+this.product[0].productID);
-
         this.review.addReview(+Object(data).customerID, +this.product[0].productID, +value.star, value.reviewTextArea).subscribe(data=>{
           if (data == 2) { console.warn("An error has occured while INSERTING"); alert("Your review couldn't be registred."); return; }
           sessionStorage.removeItem("reviewing");
           window.location.reload();
         });
-    });
-
+    })
   }
 
   getReviews() {

@@ -6,8 +6,8 @@ import { ProductService } from 'src/app/product.service';
   templateUrl: './a-product-listing-page.component.html',
   styleUrls: ['./a-product-listing-page.component.css']
 })
-export class AProductListingPageComponent implements OnInit {
 
+export class AProductListingPageComponent implements OnInit {
   products: Array<{ProductID: number, Name: string, Price: number, Amount: number, Status: number, FilePath: string}> = [];
 
   constructor(private productHandler: ProductService) { }

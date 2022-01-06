@@ -1,0 +1,39 @@
+<br>
+
+<div class="row">
+  <div class="col-3"></div>
+
+  <div class="col-6">
+    <h1 class="text-center">Edit a product</h1>
+    <form #productForm="ngForm" (ngSubmit)="saveProduct(productForm)" *ngFor="let item of products" action="index.html" method="post">
+      <div class="mb-3">
+        <label for="name" class="form-label">Title</label>
+        <input class="form-control" id="title" maxlength="50" name="name" value="test" required [(ngModel)]="item.Name">
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" rows="3" maxlength="200" name="description" [(ngModel)]="item.Description"></textarea>
+      </div>
+
+      <div class="input-group mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="price" max="999999999" min="0" name="price" aria-label="Dollar amount (with dot and two decimal places)" required [(ngModel)]="item.Price">
+        <span class="input-group-text">kr</span>
+      </div>
+
+      <div class="input-group mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="price" max="999999999" min="0" name="amount" aria-label="Amount of product in storage" required [(ngModel)]="item.Amount">
+      </div>
+
+      <br><br>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-lg btn-success" name="button">Save product</button>
+      </div>
+    </form>
+
+
+  </div>
+</div>
