@@ -12,7 +12,7 @@ export class AdminService {
 
   constructor(private http:HttpClient) {}
 
-  createProduct(Name: string, Description: string, Price: number, FilePath: string, Amount: number) {
+  createProduct(Name: string, Description: string, Price: number, FilePath: string, Amount: number, Status: boolean) {
     const headers = { 'content-type': 'application/json'}
 
     var obj = {
@@ -20,7 +20,8 @@ export class AdminService {
       description: Description,
       price: Price,
       filePath: FilePath,
-      amount: Amount
+      amount: Amount,
+      hidden: +Status
     };
 
     return this.http.post(this.baseURL + "createProduct.php", obj, {'headers':headers})
