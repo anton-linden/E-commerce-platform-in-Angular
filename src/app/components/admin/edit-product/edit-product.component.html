@@ -27,6 +27,11 @@
         <input type="number" class="form-control" id="price" max="999999999" min="0" name="amount" aria-label="Amount of product in storage" required [(ngModel)]="item.Amount">
       </div>
 
+      <div class="input-group mb-3">
+        <label for="filePath" class="form-label">Image URL</label>
+        <input type="text" name="filePath" size="50" max="1000" [(ngModel)]="item.FilePath">
+      </div>
+
       <br><br>
 
       <div class="d-grid">

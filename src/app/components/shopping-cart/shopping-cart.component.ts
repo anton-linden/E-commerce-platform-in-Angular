@@ -11,13 +11,14 @@ import {Router} from '@angular/router';
 })
 export class ShoppingCartComponent implements OnInit {
 
+  defaultImageFilePath: string = "assets/200x200.svg";
   public userID: number = 0;
   cart_items: Array<{productsInCartID: number, productID: number, amount: number, name: string, price: number, description: string, filePath: string}> = [];
   currentPrice: number = 0;
   totalPrice: number = 0;
   shipping: number = 150;
   sale: number = 0;
-  noUser = false;
+  noUser: boolean = false;
 
   constructor(private cart:GetShoppingCartService, private router: Router, private order: OrdersService) {
 
@@ -34,6 +35,10 @@ export class ShoppingCartComponent implements OnInit {
           for (let index = 1; index <= Object(data2).length; index++) {
 
             this.cart.getProductData(Object(data2)[index-1].productID).subscribe(data3=>{
+
+              let filePath: string = this.defaultImageFilePath;
+              if (Object(data3)[0].filePath.length > 0) filePath = Object(data3)[0].filePath;
+
               this.cart_items.push({
                 productsInCartID: Object(data2)[index-1].productsInCartID,
                 productID: Object(data2)[index-1].productID,
@@ -41,7 +46,7 @@ export class ShoppingCartComponent implements OnInit {
                 name: Object(data3)[0].name,
                 price: Object(data3)[0].price,
                 description: Object(data3)[0].description,
-                filePath: Object(data3)[0].filePath
+                filePath: filePath
               });
 
               this.cart_items = this.cart_items.sort((a, b) => b.productID - a.productID);  //Sort the array after productID to avoid issues.

@@ -9,7 +9,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EditProductComponent implements OnInit {
 
-  pid: number = 0;
+  defaultImageFilePath: string = "assets/200x200.svg";
+  pid: number = 0; //ProductID of current product.
   status: number = 0;
   products: Array<{Name: string, Description: string, Price: number, Amount: number, FilePath: string}> = [];
 
@@ -39,7 +40,10 @@ export class EditProductComponent implements OnInit {
     if (!productForm.value.name) return alert("Name is missing");
     if (!productForm.value.price) return alert("Price is missing.");
     if (productForm.value.amount == null || productForm.value.amount.length < 1) return alert("Amount is missing.");
-    this.admin.updateProduct(this.pid, productForm.value.name, productForm.value.description, productForm.value.price, "testPath", productForm.value.amount, this.status).subscribe(data=>{ //productForm.value.filePath
+    if (typeof productForm.value.filePath !== "string") return alert("File path was incorrect.");
+    if (productForm.value.filePath.length < 1) productForm.value.filePath = this.defaultImageFilePath; //Sets stock image.
+
+    this.admin.updateProduct(this.pid, productForm.value.name, productForm.value.description, productForm.value.price, productForm.value.filePath, productForm.value.amount, this.status).subscribe(data=>{ //productForm.value.filePath
       (data == 1) ? alert("Product updated!") : alert("Something went wrong, try again later");
       this.route.navigateByUrl('admin-product-listing-page');
     })

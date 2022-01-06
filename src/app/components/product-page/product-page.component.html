@@ -1,7 +1,7 @@
 <div class="contrainer">
   <div class="row" *ngFor="let product of product">
     <div class="col-md d-flex justify-content-center">
-      <img src="assets/200x200.svg" class="rounded float-left img-fluid" alt="...">
+      <img [src]="product.filePath" class="rounded float-left img-fluid" alt="...">
     </div>
 
     <div class="col-md">

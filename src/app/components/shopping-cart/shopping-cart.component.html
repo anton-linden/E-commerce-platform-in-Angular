@@ -15,7 +15,7 @@
         <div class="m-3">
 
           <div class="row d-flex align-items-center">
-            <img src="assets/200x200.svg" routerLink="/product-page" class="rounded float-left pointer col-2" alt="...">
+            <img [src]="item.filePath" routerLink="/product-page" class="rounded float-left pointer col-2" alt="...">
             <h4 class="col-4">{{item.name}}</h4>
             <h5 class="col-2">{{item.price}} kr</h5>
 
