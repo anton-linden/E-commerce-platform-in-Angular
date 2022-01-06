@@ -9,27 +9,28 @@ import { Inject } from '@angular/core';
 })
 export class ProductViewComponent implements OnInit {
 
-  categories = 0;
-  public prodC: Object = {};
-
+  defaultImageFilePath: string = "assets/200x200.svg";
   products: Array<{productID: number, name: string, description: string, price: number, filePath: string}> = [];
 
   constructor(private productGet:GetActiveProductsService) {
     this.productGet.getData().subscribe(data=>{
       for (let index = 0; this.products.length < Object(data).length; index++) {
+
+        let filePath: string = this.defaultImageFilePath;
+        if (Object(data)[index].filePath.length > 0) filePath = Object(data)[index].filePath;
+
         this.products.push({
           productID: Object(data)[index].productID,
           name: Object(data)[index].name,
           description: Object(data)[index].description,
           price: Object(data)[index].price,
-          filePath: Object(data)[index].filePath });
+          filePath: filePath 
+        });
       }
     })
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
 
 //type ProductsArr = Array<{ id: number, name: string, description: string, price: number, filePath: string }>;

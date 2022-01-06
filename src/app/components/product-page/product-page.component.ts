@@ -14,6 +14,8 @@ import { UserService } from 'src/app/user.service';
 })
 export class ProductPageComponent implements OnInit {
 
+  defaultImageFilePath: string = "assets/200x200.svg";
+
   reviewsArray = new Array();
   reviewing: boolean = false;
 
@@ -34,13 +36,19 @@ export class ProductPageComponent implements OnInit {
 
         this.productGet.getData(id).subscribe(data=>{
           for (let index = 0; this.product.length < Object(data).length; index++) {
+
+            let filePath: string = this.defaultImageFilePath;
+            if (Object(data)[index].filePath.length > 0) filePath = Object(data)[index].filePath;
+
+
             this.product.push({
               productID: Object(data)[index].productID,
               name: Object(data)[index].name,
               amount: +Object(data)[index].amount,
               description: Object(data)[index].description,
               price: Object(data)[index].price,
-              filePath: Object(data)[index].filePath });
+              filePath: filePath
+            });
           }
         })
       }
