@@ -10,27 +10,15 @@ $username = 'adm';
 $password = 'myserverx';
 $dbname = 'ws';*/
 
-if (isset($_GET['productID'])) {
-    $productID = $_GET['productID'];
-} else {
-    exit("WARNING, No productID was gotten");
-}
+if (!isset($_GET['productID'])) exit("WARNING, No productID was gotten");
+$productID = $_GET['productID'];
+if (!ctype_digit(strval($productID)) || $productID == null) exit("ProductID was not correct.");
 
-if (strlen($productID) > 0 && $productID != null) {
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
 
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+$result = $conn->query("SELECT name, description, price, filePath, amount, hidden FROM products WHERE productID = '$productID'");
+echo json_encode($result -> fetch_all(MYSQLI_ASSOC));
 
-  //Get cart contents.
-  $sql = "SELECT name, description, filePath FROM products WHERE productID = '$productID'";
-  $result = $conn->query($sql);
-
-  echo json_encode($result -> fetch_all(MYSQLI_ASSOC));
-
-  $conn->close();
-}
+$conn->close();
 ?>

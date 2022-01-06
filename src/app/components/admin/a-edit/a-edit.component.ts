@@ -11,8 +11,6 @@ export class AEditComponent implements OnInit {
   ngOnInit(): void {}
 
   saveProduct(productForm: any) {
-
-    console.log(productForm.value);
     if (productForm.value.status == "") productForm.value.status = false;
     if (!productForm.value.name) return alert("Name is missing");
     if (!productForm.value.price) return alert("Price is missing.");

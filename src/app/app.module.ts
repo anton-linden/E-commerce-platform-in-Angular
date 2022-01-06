@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AOrderPageComponent } from './components/admin/a-order-page/a-order-page.component';
 import { AAccountsPageComponent } from './components/admin/a-accounts-page/a-accounts-page.component';
 import { AProductListingPageComponent } from './components/admin/a-product-listing-page/a-product-listing-page.component';
+import { EditProductComponent } from './components/admin/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AProductListingPageComponent } from './components/admin/a-product-listi
     AdminPanelComponent,
     AOrderPageComponent,
     AAccountsPageComponent,
-    AProductListingPageComponent
+    AProductListingPageComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
