@@ -9,6 +9,7 @@ import { OrdersService } from 'src/app/orders.service';
 })
 export class AOrderPageComponent implements OnInit {
 
+  defaultImageFilePath: string = "assets/200x200.svg";
   orders: Array<{OrderID: number, products: Array<{productID: number, amount: number, price: number, name: string, description: string, filePath: string}>}> = [];
 
   constructor(private cart:GetShoppingCartService, private order: OrdersService) { }
@@ -38,13 +39,17 @@ export class AOrderPageComponent implements OnInit {
 
                 for (let inx = 1; inx <= Object(data2).length; inx++) {
                   this.order.getProductFromProductID(Object(data2)[inx-1].productID).subscribe(data3=>{
+
+                    let filePath: string = this.defaultImageFilePath;
+                    if (Object(data3)[0].filePath.length > 0) filePath = Object(data3)[0].filePath;
+
                     ord.push({
                       productID: Object(data2)[inx-1].productID,
                       amount: Object(data2)[inx-1].amount,
                       price: Object(data2)[inx-1].price,
                       name: Object(data3)[0].name,
                       description: Object(data3)[0].description,
-                      filePath: Object(data3)[0].filePath
+                      filePath: filePath
                     });
                   })
                 }

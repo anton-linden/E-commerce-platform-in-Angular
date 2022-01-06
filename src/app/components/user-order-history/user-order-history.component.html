@@ -11,7 +11,7 @@
         <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let product of item.products" [routerLink]="['/product-page', product.productID]" (click)="navigateToRateProductView(product.productID)">
             <div>
               <h1></h1>
-              <img src="assets\200x200.svg" class="rounded float-start" style="width:20%">
+              <img [src]="product.filePath" class="rounded float-start" style="width:20%">
               <p class="float-start m-4">{{product.name}}</p>
             </div>
             <div class="mt-3">
