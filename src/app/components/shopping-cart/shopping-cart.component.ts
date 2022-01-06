@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetShoppingCartService } from 'src/app/get-shopping-cart.service';
 import { OrdersService } from 'src/app/orders.service';
+import { ProductService } from 'src/app/product.service';
 
 import {Router} from '@angular/router';
 
@@ -21,7 +22,7 @@ export class ShoppingCartComponent implements OnInit {
   noUser: boolean = false;
   max: number = 5; //test value.
 
-  constructor(private cart:GetShoppingCartService, private router: Router, private order: OrdersService) {
+  constructor(private cart:GetShoppingCartService, private router: Router, private order: OrdersService, private product: ProductService) {
 
     let sessionUser: string = JSON.stringify(sessionStorage.getItem('Username')).replace(/['"]+/g, '');
 
@@ -79,6 +80,10 @@ export class ShoppingCartComponent implements OnInit {
               this.order.getOrderIDFromCustomerID(Object(data)[0].customerID).subscribe(data => {
                 for (let index = 1; index <= this.cart_items.length; index++) {
                   this.order.addProductToOrder(Object(this.cart_items)[index-1].productID, Object(data)[0].orderID, Object(this.cart_items)[index-1].price, Object(this.cart_items)[index-1].amount).subscribe(data => {
+                    this.product.changeProductAmount(Object(this.cart_items)[index-1].productID, Object(this.cart_items)[index-1].maxAmount - Object(this.cart_items)[index-1].amount).subscribe(res => {
+                      console.log(res);
+
+                    })
                   })
                 }
                 if (this.cart_items.length > 0) {

@@ -15,23 +15,24 @@ $productID = $data["productID"];
 $productAmount = $data["productAmount"];
 $productPrice = $data["productPrice"];
 
-if ((strlen($orderID) > 0) && (strlen($productID) > 0) && (strlen($productPrice) > 0) && (strlen($productAmount) > 0)) { //Add amount
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+echo !ctype_digit(strval($orderID));
 
-  $sql = "INSERT INTO ordered_products (productID, orderID, amount, price)
-  VALUES ('$productID', '$orderID', '$productAmount', '$productPrice')";
+if (!ctype_digit(strval($orderID)) || $orderID < 1 || $orderID == null) exit("OrderID was incorrect.");
+if (!ctype_digit(strval($productID)) || $productID < 1 || $productID == null) exit("productID was incorrect.");
+if (!ctype_digit(strval($productAmount)) || $productAmount < 1 || $productAmount == null) exit("productAmount was incorrect.");
+if (!ctype_digit(strval($productPrice)) || $productPrice < 0 || $productPrice == null) exit("productPrice was incorrect.");
 
-  if ($conn->query($sql) === TRUE) {
-    echo 1;
-  } else {
-    echo 2;
-  }
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
 
-  $conn->close();
+$sql = "INSERT INTO ordered_products (productID, orderID, amount, price)
+VALUES ('$productID', '$orderID', '$productAmount', '$productPrice')";
+
+if ($conn->query($sql) === TRUE) {
+  echo 1;
+} else {
+  echo 2;
 }
+
+$conn->close();
 ?>

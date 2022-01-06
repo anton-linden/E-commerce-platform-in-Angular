@@ -18,19 +18,20 @@ $filePath = $data["filePath"];
 $amount = $data["amount"];
 $hidden = $data["hidden"];
 
-if (!is_int($hidden)) exit("Problem occured with status.");
-if (!is_int($productID) || $productID == null) exit("ProductID was not correct.");
+if (!ctype_digit(strval($hidden)) || $hidden < 0 || $hidden > 1) exit("Problem occured with status.");
+if (!ctype_digit(strval($productID)) || $productID < 1 || $productID == null) exit("productID was incorrect.");
+if (!ctype_digit(strval($price)) || $price < 0 || $price == null) exit("price was incorrect.");
+if (!ctype_digit(strval($amount)) || $amount < 0 || $amount == null) exit("amount was incorrect.");
 
-if (strlen($name) > 0 && strlen($price) > 0 && strlen($amount) > 0) {
-  $conn = new mysqli($servername, $username, $password, $dbname);
-  if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
 
-  if ($conn->query("UPDATE products SET name='$name', description='$description', price='$price', filePath='$filePath', amount='$amount', hidden='$hidden' WHERE productID='$productID'") === TRUE) {
-    echo 1;
-  } else {
-    echo 2;
-  }
-
-  $conn->close();
+if ($conn->query("UPDATE products SET name='$name', description='$description', price='$price', filePath='$filePath', amount='$amount', hidden='$hidden' WHERE productID='$productID'") === TRUE) {
+  echo 1;
+} else {
+  echo 2;
 }
+
+$conn->close();
+
 ?>
