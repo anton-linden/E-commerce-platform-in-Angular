@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetShoppingCartService } from 'src/app/get-shopping-cart.service';
 import { OrdersService } from 'src/app/orders.service';
+import { ProductService } from 'src/app/product.service';
 
 import {Router} from '@angular/router';
 
@@ -13,14 +14,15 @@ export class ShoppingCartComponent implements OnInit {
 
   defaultImageFilePath: string = "assets/200x200.svg";
   public userID: number = 0;
-  cart_items: Array<{productsInCartID: number, productID: number, amount: number, name: string, price: number, description: string, filePath: string}> = [];
+  cart_items: Array<{productsInCartID: number, productID: number, amount: number, name: string, price: number, description: string, filePath: string, maxAmount: number}> = [];
   currentPrice: number = 0;
   totalPrice: number = 0;
   shipping: number = 150;
   sale: number = 0;
   noUser: boolean = false;
+  max: number = 5; //test value.
 
-  constructor(private cart:GetShoppingCartService, private router: Router, private order: OrdersService) {
+  constructor(private cart:GetShoppingCartService, private router: Router, private order: OrdersService, private product: ProductService) {
 
     let sessionUser: string = JSON.stringify(sessionStorage.getItem('Username')).replace(/['"]+/g, '');
 
@@ -42,11 +44,12 @@ export class ShoppingCartComponent implements OnInit {
               this.cart_items.push({
                 productsInCartID: Object(data2)[index-1].productsInCartID,
                 productID: Object(data2)[index-1].productID,
-                amount: Object(data2)[index-1].amount,
+                amount: +Object(data2)[index-1].amount,
                 name: Object(data3)[0].name,
                 price: Object(data3)[0].price,
                 description: Object(data3)[0].description,
-                filePath: filePath
+                filePath: filePath,
+                maxAmount: +Object(data3)[0].amount
               });
 
               this.cart_items = this.cart_items.sort((a, b) => b.productID - a.productID);  //Sort the array after productID to avoid issues.
@@ -77,6 +80,10 @@ export class ShoppingCartComponent implements OnInit {
               this.order.getOrderIDFromCustomerID(Object(data)[0].customerID).subscribe(data => {
                 for (let index = 1; index <= this.cart_items.length; index++) {
                   this.order.addProductToOrder(Object(this.cart_items)[index-1].productID, Object(data)[0].orderID, Object(this.cart_items)[index-1].price, Object(this.cart_items)[index-1].amount).subscribe(data => {
+                    this.product.changeProductAmount(Object(this.cart_items)[index-1].productID, Object(this.cart_items)[index-1].maxAmount - Object(this.cart_items)[index-1].amount).subscribe(res => {
+                      console.log(res);
+
+                    })
                   })
                 }
                 if (this.cart_items.length > 0) {
@@ -100,13 +107,16 @@ export class ShoppingCartComponent implements OnInit {
       })
   }
 
-  increaseAmountOfProductInCart(ProductsInCartID: number, Amount: number) {
+  increaseAmountOfProductInCart(ProductsInCartID: number, Amount: number, MaxAmount: number) {
+    if (Amount == MaxAmount) return alert("There isn't enough of the product left in storage.");
+    if (Amount > MaxAmount) Amount = MaxAmount - 1;
     Amount++;
     this.callchangeAmountOfProductInCart(ProductsInCartID, Amount);
   }
 
-  decreaseAmountOfProductInCart(ProductsInCartID: number, Amount: number, ProductID: number) {
+  decreaseAmountOfProductInCart(ProductsInCartID: number, Amount: number, ProductID: number, MaxAmount: number) {
     if (Amount <= 1) this.removeItem(ProductID)
+    if (Amount > MaxAmount) Amount = MaxAmount - 1;
     Amount--;
     this.callchangeAmountOfProductInCart(ProductsInCartID, Amount);
   }
