@@ -19,5 +19,13 @@ export class ProductService {
     return this.http.post(this.baseURL + "deleteProductFromProductID.php", obj,{'headers':headers})
   }
 
+  flipProductStatusFromProductID(ProductID: number, Status: number) {
+    const headers = { 'content-type': 'application/json'}
+    var obj = {
+      productID: ProductID,
+      status: +Status
+     };
+    return this.http.post(this.baseURL + "flipProductStatusFromProductID.php", obj,{'headers':headers})
+  }
 
 }
