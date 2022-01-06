@@ -21,7 +21,8 @@
       <td>{{item.Amount}}</td>
       <td *ngIf="item.Status == 1">Inactive</td>
       <td *ngIf="item.Status == 0">Active</td>
-      <td><button type="button" name="button" class="btn btn-danger" (click)="deleteProduct(item.ProductID)">Delete</button></td>
+      <!-- <td><button type="button" name="button" class="btn btn-danger" (click)="deleteProduct(item.ProductID)">Delete</button></td> -->
+      <td><button type="button" name="button" class="btn btn-primary" (click)="flipProductStatus(item.ProductID, item.Status)">Change status</button></td>
     </tr>
   </tbody>
 </table>

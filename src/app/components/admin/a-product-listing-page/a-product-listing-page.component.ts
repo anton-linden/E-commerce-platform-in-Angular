@@ -40,6 +40,23 @@ export class AProductListingPageComponent implements OnInit {
     })
   }
 
+  flipBit(Input: number) {
+    if (Input == 1) return 0;
+    if (Input == 0) return 1;
+    return console.warn("Error flipping boolean!");
+  }
+
+  flipProductStatus(ProductID: number, Status: number) {
+    let flipped_status = this.flipBit(Status);
+    if (typeof flipped_status !== "number") return alert("An issue occured, try again later..");
+
+    this.productHandler.flipProductStatusFromProductID(ProductID, flipped_status).subscribe(data=>{
+      if (data != "Successful") return alert("Failed to toggle the product");
+      alert("Product was successfully toggled. Page will reload.");
+      this.getAllProducts();
+    })
+  }
+
   editProduct(ProductID: number) {
     // TODO: Implement with a new GUI.
   }
