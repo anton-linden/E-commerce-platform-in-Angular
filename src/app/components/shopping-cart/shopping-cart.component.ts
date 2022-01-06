@@ -13,12 +13,13 @@ export class ShoppingCartComponent implements OnInit {
 
   defaultImageFilePath: string = "assets/200x200.svg";
   public userID: number = 0;
-  cart_items: Array<{productsInCartID: number, productID: number, amount: number, name: string, price: number, description: string, filePath: string}> = [];
+  cart_items: Array<{productsInCartID: number, productID: number, amount: number, name: string, price: number, description: string, filePath: string, maxAmount: number}> = [];
   currentPrice: number = 0;
   totalPrice: number = 0;
   shipping: number = 150;
   sale: number = 0;
   noUser: boolean = false;
+  max: number = 5; //test value.
 
   constructor(private cart:GetShoppingCartService, private router: Router, private order: OrdersService) {
 
@@ -42,11 +43,12 @@ export class ShoppingCartComponent implements OnInit {
               this.cart_items.push({
                 productsInCartID: Object(data2)[index-1].productsInCartID,
                 productID: Object(data2)[index-1].productID,
-                amount: Object(data2)[index-1].amount,
+                amount: +Object(data2)[index-1].amount,
                 name: Object(data3)[0].name,
                 price: Object(data3)[0].price,
                 description: Object(data3)[0].description,
-                filePath: filePath
+                filePath: filePath,
+                maxAmount: +Object(data3)[0].amount
               });
 
               this.cart_items = this.cart_items.sort((a, b) => b.productID - a.productID);  //Sort the array after productID to avoid issues.
@@ -100,13 +102,16 @@ export class ShoppingCartComponent implements OnInit {
       })
   }
 
-  increaseAmountOfProductInCart(ProductsInCartID: number, Amount: number) {
+  increaseAmountOfProductInCart(ProductsInCartID: number, Amount: number, MaxAmount: number) {
+    if (Amount == MaxAmount) return alert("There isn't enough of the product left in storage.");
+    if (Amount > MaxAmount) Amount = MaxAmount - 1;
     Amount++;
     this.callchangeAmountOfProductInCart(ProductsInCartID, Amount);
   }
 
-  decreaseAmountOfProductInCart(ProductsInCartID: number, Amount: number, ProductID: number) {
+  decreaseAmountOfProductInCart(ProductsInCartID: number, Amount: number, ProductID: number, MaxAmount: number) {
     if (Amount <= 1) this.removeItem(ProductID)
+    if (Amount > MaxAmount) Amount = MaxAmount - 1;
     Amount--;
     this.callchangeAmountOfProductInCart(ProductsInCartID, Amount);
   }

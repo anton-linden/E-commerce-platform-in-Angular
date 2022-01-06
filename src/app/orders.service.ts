@@ -38,7 +38,7 @@ export class OrdersService {
       productPrice: ProductPrice,
       productAmount: ProductAmount
     };
-
+    
     return this.http.post(this.baseURL + "addProductToOrder.php", obj, {'headers':headers})
   }
 }
